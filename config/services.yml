@@ -1,0 +1,19 @@
+parameters:
+    vinny.headermanager.tables.images: '%core.table_prefix%headermanager_images'
+    vinny.headermanager.tables.forums: '%core.table_prefix%headermanager_forums'
+
+services:
+    vinny.headermanager.listener:
+        class: vinny\headermanager\event\main_listener
+        arguments:
+            - '@config'
+            - '@dbal.conn'
+            - '@request'
+            - '@template'
+            - '@user'
+            - '%core.root_path%'
+            - '%core.php_ext%'
+            - '%vinny.headermanager.tables.images%'
+            - '%vinny.headermanager.tables.forums%'
+        tags:
+            - { name: event.listener }

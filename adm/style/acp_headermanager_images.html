@@ -1,0 +1,78 @@
+{% include 'overall_header.html' %}
+
+<a id="maincontent"></a>
+
+<h1>{{ lang('HEADERMANAGER_IMAGES') }}</h1>
+<p>{{ lang('HEADERMANAGER_IMAGES_EXPLAIN') }}</p>
+
+<form id="acp_headermanager_upload" method="post" action="{{ U_ACTION }}" enctype="multipart/form-data">
+	<fieldset>
+		<legend>{{ lang('HM_UPLOAD_IMAGE') }}</legend>
+		
+		<dl>
+			<dt><label for="image_file">{{ lang('HM_UPLOAD_IMAGE') }}{{ lang('COLON') }}</label><br /><span>{{ lang('HM_UPLOAD_IMAGE_EXPLAIN') }}</span></dt>
+			<dd><input type="file" id="image_file" name="image_file" accept="image/png,image/jpeg,image/gif,image/webp" /></dd>
+		</dl>
+		
+		<dl>
+			<dt><label for="image_title">{{ lang('HM_IMAGE_TITLE') }}{{ lang('COLON') }}</label><br /><span>{{ lang('HM_IMAGE_TITLE_EXPLAIN') }}</span></dt>
+			<dd><input type="text" id="image_title" name="image_title" value="" maxlength="255" size="40" /></dd>
+		</dl>
+
+		<dl>
+			<dt><label for="image_type">{{ lang('HM_IMAGE_TYPE') }}{{ lang('COLON') }}</label><br /><span>{{ lang('HM_IMAGE_TYPE_EXPLAIN') }}</span></dt>
+			<dd>
+				<label><input type="radio" class="radio" name="image_type" value="global" checked="checked" /> {{ lang('HM_IMAGE_TYPE_GLOBAL') }}</label>
+				<label><input type="radio" class="radio" name="image_type" value="forum" /> {{ lang('HM_IMAGE_TYPE_FORUM') }}</label>
+			</dd>
+		</dl>
+		
+		<p class="quick">
+			<input class="button1" type="submit" id="upload" name="upload" value="{{ lang('HM_UPLOAD_IMAGE') }}" />
+			{{ S_FORM_TOKEN }}
+		</p>
+	</fieldset>
+</form>
+
+<h2>{{ lang('HM_UPLOADED_IMAGES') }}</h2>
+
+<table class="table1 zebra-table">
+	<thead>
+		<tr>
+			<th>{{ lang('HM_PREVIEW') }}</th>
+			<th>{{ lang('HM_FILENAME') }}</th>
+			<th>{{ lang('HM_TITLE') }}</th>
+			<th>{{ lang('HM_TYPE') }}</th>
+			<th>{{ lang('HM_UPLOAD_DATE') }}</th>
+			<th style="text-align: center; width: 60px;">{{ lang('HM_DELETE') }}</th>
+		</tr>
+	</thead>
+	<tbody>
+		{% for image in images %}
+			<tr>
+				<td style="text-align: center; vertical-align: middle;">
+					<img src="{{ image.URL }}" alt="{{ image.TITLE }}" style="max-height: 50px; max-width: 150px; border-radius: 4px;" />
+				</td>
+				<td>{{ image.FILENAME }}</td>
+				<td>{{ image.TITLE|default('-') }}</td>
+				<td>
+					{% if image.TYPE == 'forum' %}
+						<span style="color: #2271b1; font-weight: bold;">{{ lang('HM_IMAGE_TYPE_FORUM') }}</span>
+					{% else %}
+						<span style="color: #46b450; font-weight: bold;">{{ lang('HM_IMAGE_TYPE_GLOBAL') }}</span>
+					{% endif %}
+				</td>
+				<td>{{ image.DATE }}</td>
+				<td style="text-align: center;" class="actions">
+					<a href="{{ image.U_DELETE }}" data-ajax="row_delete" title="{{ lang('HM_DELETE') }}">{{ ICON_DELETE }}</a>
+				</td>
+			</tr>
+		{% else %}
+			<tr>
+				<td colspan="6" style="text-align: center;">{{ lang('HM_NO_IMAGES_UPLOADED') }}</td>
+			</tr>
+		{% endfor %}
+	</tbody>
+</table>
+
+{% include 'overall_footer.html' %}

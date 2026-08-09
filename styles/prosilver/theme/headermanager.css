@@ -1,0 +1,68 @@
+/**
+* Header Manager Stylesheet
+*/
+
+/* Custom Logo */
+.hm-custom-logo #site-description a.logo {
+	background-image: var(--hm-logo-url) !important;
+	background-repeat: no-repeat !important;
+	background-position: center center !important;
+	background-size: contain !important;
+}
+
+.hm-custom-logo #site-description a.logo .site_logo {
+	opacity: 0 !important;
+}
+
+/* Clickable overlay */
+.hm-clickable .headerbar,
+.hm-clickable .headerbar .inner {
+	position: relative !important;
+}
+
+.hm-clickable .headerbar #site-description a.logo::after {
+	content: "" !important;
+	position: absolute !important;
+	inset: 0 !important;
+	z-index: 1 !important;
+}
+
+.hm-clickable .headerbar .search-header {
+	position: relative !important;
+	z-index: 2 !important;
+}
+
+/* Centralized Elements (Horizontal & Vertical - Logo, Title, Description, Search) */
+.hm-center-elements .headerbar .inner {
+	display: flex !important;
+	flex-direction: column !important;
+	justify-content: center !important;
+	align-items: center !important;
+	text-align: center !important;
+	box-sizing: border-box !important;
+}
+
+.hm-center-elements .headerbar #site-description {
+	float: none !important;
+	text-align: center !important;
+	margin: 0 auto 10px !important;
+	width: 100% !important;
+	display: flex !important;
+	flex-direction: column !important;
+	align-items: center !important;
+	justify-content: center !important;
+}
+
+.hm-center-elements .headerbar #site-description a.logo {
+	float: none !important;
+	display: inline-block !important;
+	margin: 0 auto 10px !important;
+}
+
+.hm-center-elements .headerbar .search-header {
+	position: static !important;
+	float: none !important;
+	margin: 10px auto 0 !important;
+	text-align: center !important;
+	display: inline-block !important;
+}

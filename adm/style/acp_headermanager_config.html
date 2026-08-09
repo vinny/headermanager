@@ -1,0 +1,93 @@
+{% include 'overall_header.html' %}
+
+<a id="maincontent"></a>
+
+<h1>{{ lang('HEADERMANAGER_SETTINGS') }}</h1>
+<p>{{ lang('HEADERMANAGER_SETTINGS_EXPLAIN') }}</p>
+
+<form id="acp_headermanager_config" method="post" action="{{ U_ACTION }}">
+	<fieldset>
+		<legend>{{ lang('HM_GENERAL_SETTINGS') }}</legend>
+		
+		<dl>
+			<dt><label for="enable">{{ lang('HM_ENABLE') }}{{ lang('COLON') }}</label><br /><span>{{ lang('HM_ENABLE_EXPLAIN') }}</span></dt>
+			<dd>
+				<label><input type="radio" class="radio" name="enable" value="1"{% if S_HM_ENABLE %} id="enable" checked="checked"{% endif %} /> {{ lang('YES') }}</label>
+				<label><input type="radio" class="radio" name="enable" value="0"{% if not S_HM_ENABLE %} id="enable" checked="checked"{% endif %} /> {{ lang('NO') }}</label>
+			</dd>
+		</dl>
+
+		<dl>
+			<dt><label for="height">{{ lang('HM_HEIGHT') }}{{ lang('COLON') }}</label><br /><span>{{ lang('HM_HEIGHT_EXPLAIN') }}</span></dt>
+			<dd><input type="number" id="height" name="height" value="{{ HM_HEIGHT }}" min="0" max="9999" size="6" /> px</dd>
+		</dl>
+
+		<dl>
+			<dt><label for="border_radius">{{ lang('HM_BORDER_RADIUS') }}{{ lang('COLON') }}</label><br /><span>{{ lang('HM_BORDER_RADIUS_EXPLAIN') }}</span></dt>
+			<dd><input type="number" id="border_radius" name="border_radius" value="{{ HM_BORDER_RADIUS }}" min="0" max="999" size="6" /> px</dd>
+		</dl>
+
+		<dl>
+			<dt><label for="clickable">{{ lang('HM_CLICKABLE') }}{{ lang('COLON') }}</label><br /><span>{{ lang('HM_CLICKABLE_EXPLAIN') }}</span></dt>
+			<dd>
+				<label><input type="radio" class="radio" name="clickable" value="1"{% if S_HM_CLICKABLE %} id="clickable" checked="checked"{% endif %} /> {{ lang('YES') }}</label>
+				<label><input type="radio" class="radio" name="clickable" value="0"{% if not S_HM_CLICKABLE %} id="clickable" checked="checked"{% endif %} /> {{ lang('NO') }}</label>
+			</dd>
+		</dl>
+	</fieldset>
+
+	<fieldset>
+		<legend>{{ lang('HM_ELEMENT_VISIBILITY') }}</legend>
+
+		<dl>
+			<dt><label for="show_logo">{{ lang('HM_SHOW_LOGO') }}{{ lang('COLON') }}</label><br /><span>{{ lang('HM_SHOW_LOGO_EXPLAIN') }}</span></dt>
+			<dd>
+				<label><input type="radio" class="radio" name="show_logo" value="1"{% if S_HM_SHOW_LOGO %} id="show_logo" checked="checked"{% endif %} /> {{ lang('YES') }}</label>
+				<label><input type="radio" class="radio" name="show_logo" value="0"{% if not S_HM_SHOW_LOGO %} id="show_logo" checked="checked"{% endif %} /> {{ lang('NO') }}</label>
+			</dd>
+		</dl>
+
+		<dl>
+			<dt><label for="show_sitename">{{ lang('HM_SHOW_SITENAME') }}{{ lang('COLON') }}</label><br /><span>{{ lang('HM_SHOW_SITENAME_EXPLAIN') }}</span></dt>
+			<dd>
+				<label><input type="radio" class="radio" name="show_sitename" value="1"{% if S_HM_SHOW_SITENAME %} id="show_sitename" checked="checked"{% endif %} /> {{ lang('YES') }}</label>
+				<label><input type="radio" class="radio" name="show_sitename" value="0"{% if not S_HM_SHOW_SITENAME %} id="show_sitename" checked="checked"{% endif %} /> {{ lang('NO') }}</label>
+			</dd>
+		</dl>
+
+		<dl>
+			<dt><label for="show_sitedesc">{{ lang('HM_SHOW_SITEDESC') }}{{ lang('COLON') }}</label><br /><span>{{ lang('HM_SHOW_SITEDESC_EXPLAIN') }}</span></dt>
+			<dd>
+				<label><input type="radio" class="radio" name="show_sitedesc" value="1"{% if S_HM_SHOW_SITEDESC %} id="show_sitedesc" checked="checked"{% endif %} /> {{ lang('YES') }}</label>
+				<label><input type="radio" class="radio" name="show_sitedesc" value="0"{% if not S_HM_SHOW_SITEDESC %} id="show_sitedesc" checked="checked"{% endif %} /> {{ lang('NO') }}</label>
+			</dd>
+		</dl>
+
+		<dl>
+			<dt><label for="show_search">{{ lang('HM_SHOW_SEARCH') }}{{ lang('COLON') }}</label><br /><span>{{ lang('HM_SHOW_SEARCH_EXPLAIN') }}</span></dt>
+			<dd>
+				<label><input type="radio" class="radio" name="show_search" value="1"{% if S_HM_SHOW_SEARCH %} id="show_search" checked="checked"{% endif %} /> {{ lang('YES') }}</label>
+				<label><input type="radio" class="radio" name="show_search" value="0"{% if not S_HM_SHOW_SEARCH %} id="show_search" checked="checked"{% endif %} /> {{ lang('NO') }}</label>
+			</dd>
+		</dl>
+	</fieldset>
+
+	<fieldset>
+		<legend>{{ lang('HM_ALIGNMENT_SETTINGS') }}</legend>
+
+		<dl>
+			<dt><label for="center_elements">{{ lang('HM_CENTER_ELEMENTS') }}{{ lang('COLON') }}</label><br /><span>{{ lang('HM_CENTER_ELEMENTS_EXPLAIN') }}</span></dt>
+			<dd>
+				<label><input type="radio" class="radio" name="center_elements" value="1"{% if S_HM_CENTER_ELEMENTS %} id="center_elements" checked="checked"{% endif %} /> {{ lang('YES') }}</label>
+				<label><input type="radio" class="radio" name="center_elements" value="0"{% if not S_HM_CENTER_ELEMENTS %} id="center_elements" checked="checked"{% endif %} /> {{ lang('NO') }}</label>
+			</dd>
+		</dl>
+	</fieldset>
+
+	<fieldset class="quick">
+		<input class="button1" type="submit" id="submit" name="submit" value="{{ lang('SUBMIT') }}" />
+		{{ S_FORM_TOKEN }}
+	</fieldset>
+</form>
+
+{% include 'overall_footer.html' %}

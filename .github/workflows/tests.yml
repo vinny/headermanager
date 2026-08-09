@@ -1,0 +1,38 @@
+name: Tests
+
+on:
+  push:
+    branches:
+      - main
+      - master
+      - dev/*
+  pull_request:
+    branches:
+      - main
+      - master
+      - dev/*
+
+jobs:
+  call-tests:
+    name: Extension tests
+    uses: phpbb-extensions/test-framework/.github/workflows/tests.yml@3.3.x
+    with:
+      EXTNAME: vinny/headermanager
+      RUN_COMPOSER_INSTALL: '0'
+      EPV: '1'
+      RUN_FUNCTIONAL_TESTS: '1'
+
+  frontend-lint:
+    name: Frontend CSS Lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+      - name: Install dependencies
+        run: npm ci
+      - name: Run CSS Linter
+        run: npm test

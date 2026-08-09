@@ -1,0 +1,74 @@
+{% include 'overall_header.html' %}
+
+<a id="maincontent"></a>
+
+<h1>{{ lang('HEADERMANAGER_FORUMS') }}</h1>
+<p>{{ lang('HEADERMANAGER_FORUMS_EXPLAIN') }}</p>
+
+<form id="acp_headermanager_forums" method="post" action="{{ U_ACTION }}">
+	<table class="table1">
+		<thead>
+			<tr>
+				<th>{{ lang('HM_FORUM_NAME') }}</th>
+				<th>{{ lang('HM_ASSIGNED_IMAGE') }}</th>
+				<th style="text-align: center; width: 160px;">{{ lang('HM_PREVIEW') }}</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for forum in forums %}
+				<tr>
+					<td>
+						<strong>{{ forum.FORUM_NAME }}</strong>
+					</td>
+					<td>
+						<select name="forum_image[{{ forum.FORUM_ID }}]" class="hm-forum-select" data-preview-id="hm_preview_{{ forum.FORUM_ID }}">
+							<option value="0" data-url=""{% if forum.IMAGE_ID == 0 %} selected="selected"{% endif %}>{{ lang('HM_USE_GLOBAL') }}</option>
+							{% for option in forum.OPTIONS %}
+								<option value="{{ option.ID }}" data-url="{{ option.URL }}"{% if option.SELECTED %} selected="selected"{% endif %}>{{ option.TITLE }}</option>
+							{% endfor %}
+						</select>
+					</td>
+					<td style="text-align: center; vertical-align: middle;">
+						<img id="hm_preview_{{ forum.FORUM_ID }}" src="{{ forum.CURRENT_IMG_URL }}" alt="" style="max-height: 40px; max-width: 140px; border-radius: 4px; {% if not forum.CURRENT_IMG_URL %}display: none;{% endif %}" />
+					</td>
+				</tr>
+			{% else %}
+				<tr>
+					<td colspan="3" style="text-align: center; color: #777;">
+						{{ lang('NO_FORUMS') }}
+					</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+
+	<fieldset class="quick">
+		<input class="button1" type="submit" name="submit" value="{{ lang('SUBMIT') }}" />
+		{{ S_FORM_TOKEN }}
+	</fieldset>
+</form>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+	var selects = document.querySelectorAll('.hm-forum-select');
+	selects.forEach(function(select) {
+		select.addEventListener('change', function() {
+			var previewId = this.getAttribute('data-preview-id');
+			var img = document.getElementById(previewId);
+			if (img) {
+				var selectedOption = this.options[this.selectedIndex];
+				var url = selectedOption ? selectedOption.getAttribute('data-url') : '';
+				if (url) {
+					img.src = url;
+					img.style.display = 'inline-block';
+				} else {
+					img.src = '';
+					img.style.display = 'none';
+				}
+			}
+		});
+	});
+});
+</script>
+
+{% include 'overall_footer.html' %}

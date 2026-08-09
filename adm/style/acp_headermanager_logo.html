@@ -1,0 +1,51 @@
+{% include 'overall_header.html' %}
+
+<a id="maincontent"></a>
+
+<h1>{{ lang('HEADERMANAGER_LOGO') }}</h1>
+<p>{{ lang('HEADERMANAGER_LOGO_EXPLAIN') }}</p>
+
+<form id="acp_headermanager_logo" method="post" action="{{ U_ACTION }}" enctype="multipart/form-data">
+	<fieldset>
+		<legend>{{ lang('HM_CUSTOM_LOGO_SETTINGS') }}</legend>
+
+		<dl>
+			<dt><label for="enable_custom_logo">{{ lang('HM_ENABLE_CUSTOM_LOGO') }}{{ lang('COLON') }}</label><br /><span>{{ lang('HM_ENABLE_CUSTOM_LOGO_EXPLAIN') }}</span></dt>
+			<dd>
+				<label><input type="radio" class="radio" name="enable_custom_logo" value="1"{% if S_HM_ENABLE_CUSTOM_LOGO %} id="enable_custom_logo" checked="checked"{% endif %} /> {{ lang('YES') }}</label>
+				<label><input type="radio" class="radio" name="enable_custom_logo" value="0"{% if not S_HM_ENABLE_CUSTOM_LOGO %} id="enable_custom_logo" checked="checked"{% endif %} /> {{ lang('NO') }}</label>
+			</dd>
+		</dl>
+
+		<dl>
+			<dt><label for="custom_logo_file">{{ lang('HM_CUSTOM_LOGO_UPLOAD') }}{{ lang('COLON') }}</label><br /><span>{{ lang('HM_CUSTOM_LOGO_UPLOAD_EXPLAIN') }}</span></dt>
+			<dd>
+				<input type="file" id="custom_logo_file" name="custom_logo_file" accept="image/png,image/jpeg,image/gif,image/webp" />
+				{% if HM_CUSTOM_LOGO_URL %}
+					<div style="margin-top: 10px;">
+						<strong>{{ lang('HM_CURRENT_LOGO') }}{{ lang('COLON') }}</strong><br />
+						<img src="{{ HM_CUSTOM_LOGO_URL }}" alt="" style="max-height: 80px; max-width: 300px; margin-top: 5px; border-radius: 4px; border: 1px solid #ccc; padding: 3px; background: #fff;" /><br />
+						<a href="{{ U_DELETE_LOGO }}" class="button2" style="margin-top: 5px; display: inline-block;">{{ lang('HM_DELETE_LOGO') }}</a>
+					</div>
+				{% endif %}
+			</dd>
+		</dl>
+
+		<dl>
+			<dt><label for="custom_logo_width">{{ lang('HM_CUSTOM_LOGO_WIDTH') }}{{ lang('COLON') }}</label><br /><span>{{ lang('HM_CUSTOM_LOGO_WIDTH_EXPLAIN') }}</span></dt>
+			<dd><input type="number" id="custom_logo_width" name="custom_logo_width" value="{{ HM_CUSTOM_LOGO_WIDTH }}" min="0" max="9999" size="6" /> px</dd>
+		</dl>
+
+		<dl>
+			<dt><label for="custom_logo_height">{{ lang('HM_CUSTOM_LOGO_HEIGHT') }}{{ lang('COLON') }}</label><br /><span>{{ lang('HM_CUSTOM_LOGO_HEIGHT_EXPLAIN') }}</span></dt>
+			<dd><input type="number" id="custom_logo_height" name="custom_logo_height" value="{{ HM_CUSTOM_LOGO_HEIGHT }}" min="0" max="9999" size="6" /> px</dd>
+		</dl>
+	</fieldset>
+
+	<fieldset class="quick">
+		<input class="button1" type="submit" id="submit" name="submit" value="{{ lang('SUBMIT') }}" />
+		{{ S_FORM_TOKEN }}
+	</fieldset>
+</form>
+
+{% include 'overall_footer.html' %}
