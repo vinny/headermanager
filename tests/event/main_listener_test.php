@@ -27,7 +27,9 @@ class main_listener_test extends TestCase
 
 	protected function setUp(): void
 	{
-		$this->config = $this->createMock(\phpbb\config\config::class);
+		$this->config = new \phpbb\config\config([
+			'vinny_headermanager_enable' => 0,
+		]);
 		$this->db = $this->createMock(\phpbb\db\driver\driver_interface::class);
 		$this->request = $this->createMock(\phpbb\request\request::class);
 		$this->template = $this->createMock(\phpbb\template\template::class);
@@ -43,11 +45,6 @@ class main_listener_test extends TestCase
 
 	public function test_on_page_header_disabled()
 	{
-		$this->config->expects($this->once())
-			->method('offsetGet')
-			->with('vinny_headermanager_enable')
-			->willReturn(0);
-
 		$this->template->expects($this->never())
 			->method('assign_vars');
 

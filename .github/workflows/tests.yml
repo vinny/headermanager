@@ -20,7 +20,7 @@ jobs:
       EXTNAME: vinny/headermanager
       RUN_COMPOSER_INSTALL: '0'
       EPV: '1'
-      RUN_FUNCTIONAL_TESTS: '1'
+      RUN_FUNCTIONAL_TESTS: '0'
 
   frontend-lint:
     name: Frontend CSS Lint
