@@ -2,7 +2,7 @@
 	"name": "vinny/headermanager",
 	"type": "phpbb-extension",
 	"description": "Customise phpBB headerbar with random background banners, forum-specific headers, custom logo upload, and layout controls.",
-	"homepage": "https://github.com/vinny",
+	"homepage": "https://github.com/vinny/headermanager",
 	"version": "1.0.0",
 	"license": "GPL-2.0-only",
 	"authors": [
@@ -13,7 +13,7 @@
 		}
 	],
 	"require": {
-		"php": ">=7.1.3",
+		"php": ">=7.2",
 		"composer/installers": "~1.0"
 	},
 	"extra": {
