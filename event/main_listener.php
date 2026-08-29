@@ -131,6 +131,7 @@ class main_listener implements EventSubscriberInterface
 			'S_HEADERMANAGER_ENABLED'			=> true,
 			'HEADERMANAGER_BG_URL'				=> $bg_url,
 			'S_HEADERMANAGER_CUSTOM_LOGO'		=> ($enable_custom_logo && !empty($custom_logo_url)),
+			'S_HEADERMANAGER_RESPONSIVE_LOGO'	=> (bool) $this->config['vinny_headermanager_responsive_logo'],
 			'HEADERMANAGER_LOGO_URL'			=> $custom_logo_url,
 			'HEADERMANAGER_LOGO_WIDTH'			=> (int) $this->config['vinny_headermanager_custom_logo_width'],
 			'HEADERMANAGER_LOGO_HEIGHT'			=> (int) $this->config['vinny_headermanager_custom_logo_height'],

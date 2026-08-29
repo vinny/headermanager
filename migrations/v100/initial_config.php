@@ -41,6 +41,27 @@ class initial_config extends \phpbb\db\migration\migration
 			['config.add', ['vinny_headermanager_show_sitedesc', 1]],
 			['config.add', ['vinny_headermanager_show_search', 1]],
 			['config.add', ['vinny_headermanager_center_elements', 0]],
+			['config.add', ['vinny_headermanager_responsive_logo', 1]],
+		];
+	}
+
+	public function revert_data()
+	{
+		return [
+			['config.remove', ['vinny_headermanager_enable']],
+			['config.remove', ['vinny_headermanager_enable_custom_logo']],
+			['config.remove', ['vinny_headermanager_custom_logo_img']],
+			['config.remove', ['vinny_headermanager_custom_logo_width']],
+			['config.remove', ['vinny_headermanager_custom_logo_height']],
+			['config.remove', ['vinny_headermanager_height']],
+			['config.remove', ['vinny_headermanager_border_radius']],
+			['config.remove', ['vinny_headermanager_clickable']],
+			['config.remove', ['vinny_headermanager_show_logo']],
+			['config.remove', ['vinny_headermanager_show_sitename']],
+			['config.remove', ['vinny_headermanager_show_sitedesc']],
+			['config.remove', ['vinny_headermanager_show_search']],
+			['config.remove', ['vinny_headermanager_center_elements']],
+			['config.remove', ['vinny_headermanager_responsive_logo']],
 		];
 	}
 }

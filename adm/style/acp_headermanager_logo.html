@@ -18,6 +18,14 @@
 		</dl>
 
 		<dl>
+			<dt><label for="responsive_logo">{{ lang('HM_ENABLE_RESPONSIVE_LOGO') }}{{ lang('COLON') }}</label><br /><span>{{ lang('HM_ENABLE_RESPONSIVE_LOGO_EXPLAIN') }}</span></dt>
+			<dd>
+				<label><input type="radio" class="radio" name="responsive_logo" value="1"{% if S_HM_RESPONSIVE_LOGO %} id="responsive_logo" checked="checked"{% endif %} /> {{ lang('YES') }}</label>
+				<label><input type="radio" class="radio" name="responsive_logo" value="0"{% if not S_HM_RESPONSIVE_LOGO %} id="responsive_logo" checked="checked"{% endif %} /> {{ lang('NO') }}</label>
+			</dd>
+		</dl>
+
+		<dl>
 			<dt><label for="custom_logo_file">{{ lang('HM_CUSTOM_LOGO_UPLOAD') }}{{ lang('COLON') }}</label><br /><span>{{ lang('HM_CUSTOM_LOGO_UPLOAD_EXPLAIN') }}</span></dt>
 			<dd>
 				<input type="file" id="custom_logo_file" name="custom_logo_file" accept="image/png,image/jpeg,image/gif,image/webp" />

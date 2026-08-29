@@ -120,5 +120,28 @@
 	z-index: 2 !important;
 }
 {% endif %}
+
+{% if S_HEADERMANAGER_CUSTOM_LOGO %}
+{% if S_HEADERMANAGER_RESPONSIVE_LOGO %}
+@media (max-width: 700px) {
+	.headerbar #site-description a.logo {
+		max-width: 85vw !important;
+		max-height: 55px !important;
+		width: 100% !important;
+		height: auto !important;
+		{% if HEADERMANAGER_LOGO_WIDTH > 0 and HEADERMANAGER_LOGO_HEIGHT > 0 %}
+		aspect-ratio: {{ HEADERMANAGER_LOGO_WIDTH }} / {{ HEADERMANAGER_LOGO_HEIGHT }} !important;
+		{% endif %}
+	}
+}
+{% else %}
+@media (max-width: 700px) {
+	.headerbar #site-description a.logo,
+	.headerbar #site-description a.logo .site_logo {
+		display: none !important;
+	}
+}
+{% endif %}
+{% endif %}
 </style>
 {% endif %}

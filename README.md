@@ -6,7 +6,7 @@ Header Manager is a phpBB 3.3 extension that customises the board headerbar with
 
 - **General settings:** Enable the extension, set custom height and border radius in pixels, toggle the clickable headerbar, adjust element visibility, and center all header elements horizontally and vertically.
 - **Custom logo settings:** Upload a custom logo (PNG, JPG, JPEG, GIF, WEBP), set explicit width/height in pixels, and manage/delete custom logo images.
-- **Header background banners:** Upload new background banners, select the banner type (Global random or Forum specific), and manage existing files with AJAX deletion.
+- **Header background banners:** Upload new background banners, select the banner type (Global random or Forum specific), and manage existing files.
 - **Forum images:** Map specific header background banners to individual forums, subforums, or categories with live preview.
 
 

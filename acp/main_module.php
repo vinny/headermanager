@@ -157,6 +157,7 @@ class main_module
 					}
 
 					$config->set('vinny_headermanager_enable_custom_logo', $request->variable('enable_custom_logo', 0));
+					$config->set('vinny_headermanager_responsive_logo', $request->variable('responsive_logo', 0));
 					$config->set('vinny_headermanager_custom_logo_width', $request->variable('custom_logo_width', 0));
 					$config->set('vinny_headermanager_custom_logo_height', $request->variable('custom_logo_height', 0));
 
@@ -179,7 +180,7 @@ class main_module
 
 						$config->set('vinny_headermanager_custom_logo_img', $new_logo_filename);
 					}
-					else if ($upload_result['error'] !== 'NO_FILE')
+					else if (!in_array($upload_result['error'], ['NO_FILE', 'NOT_UPLOADED', 'IMAGE_FILE_NOT_UPLOADED']))
 					{
 						$error_msg = isset($user->lang[$upload_result['error']]) ? $user->lang[$upload_result['error']] : $upload_result['error'];
 						trigger_error($error_msg . adm_back_link($this->u_action), E_USER_WARNING);
@@ -192,11 +193,12 @@ class main_module
 				$logo_url = '';
 				if (!empty($logo_filename))
 				{
-					$logo_url = $phpbb_root_path . 'images/headermanager/' . $logo_filename;
+					$logo_url = generate_board_url() . '/images/headermanager/' . $logo_filename;
 				}
 
 				$template->assign_vars([
 					'S_HM_ENABLE_CUSTOM_LOGO'	=> (bool) $config['vinny_headermanager_enable_custom_logo'],
+					'S_HM_RESPONSIVE_LOGO'		=> (bool) $config['vinny_headermanager_responsive_logo'],
 					'HM_CUSTOM_LOGO_URL'		=> $logo_url,
 					'HM_CUSTOM_LOGO_WIDTH'		=> (int) $config['vinny_headermanager_custom_logo_width'],
 					'HM_CUSTOM_LOGO_HEIGHT'		=> (int) $config['vinny_headermanager_custom_logo_height'],
@@ -286,7 +288,16 @@ class main_module
 					$upload_result = $this->upload_image('image_file', 'images/headermanager');
 					if (!$upload_result['success'])
 					{
-						$error_msg = isset($user->lang[$upload_result['error']]) ? $user->lang[$upload_result['error']] : $upload_result['error'];
+						$error = $upload_result['error'];
+						if (in_array($error, ['NOT_UPLOADED', 'NO_FILE', 'IMAGE_FILE_NOT_UPLOADED']))
+						{
+							$error_msg = $user->lang('HM_ERROR_NO_FILE');
+						}
+						else
+						{
+							$error_msg = isset($user->lang[$error]) ? $user->lang[$error] : $user->lang($error);
+						}
+
 						trigger_error($error_msg . adm_back_link($this->u_action), E_USER_WARNING);
 					}
 
@@ -303,7 +314,7 @@ class main_module
 					trigger_error($user->lang('HM_IMAGE_UPLOADED_SUCCESS') . adm_back_link($this->u_action));
 				}
 
-				$sql = 'SELECT * FROM ' . $images_table . ' ORDER BY upload_time DESC';
+				$sql = 'SELECT image_id, image_filename, image_title, image_type, upload_time FROM ' . $images_table . ' ORDER BY upload_time DESC';
 				$result = $db->sql_query($sql);
 
 				while ($row = $db->sql_fetchrow($result))
@@ -314,7 +325,7 @@ class main_module
 						'TITLE'    => $row['image_title'],
 						'TYPE'     => $row['image_type'],
 						'DATE'     => $user->format_date($row['upload_time']),
-						'URL'      => $phpbb_root_path . 'images/headermanager/' . $row['image_filename'],
+						'URL'      => generate_board_url() . '/images/headermanager/' . $row['image_filename'],
 						'U_DELETE' => $this->u_action . '&amp;action=delete&amp;id=' . $row['image_id'] . '&amp;hash=' . generate_link_hash('delete_' . $row['image_id']),
 					]);
 				}
@@ -341,6 +352,15 @@ class main_module
 
 					$forum_images = $request->variable('forum_image', [0 => 0]);
 
+					$existing_forum_ids = [];
+					$sql = 'SELECT forum_id FROM ' . $forums_table;
+					$result = $db->sql_query($sql);
+					while ($row = $db->sql_fetchrow($result))
+					{
+						$existing_forum_ids[(int) $row['forum_id']] = true;
+					}
+					$db->sql_freeresult($result);
+
 					foreach ($forum_images as $forum_id => $img_id)
 					{
 						$forum_id = (int) $forum_id;
@@ -350,12 +370,7 @@ class main_module
 						{
 							if ($img_id > 0)
 							{
-								$sql = 'SELECT image_id FROM ' . $forums_table . ' WHERE forum_id = ' . (int) $forum_id;
-								$result = $db->sql_query($sql);
-								$exists = (bool) $db->sql_fetchfield('image_id');
-								$db->sql_freeresult($result);
-
-								if ($exists)
+								if (isset($existing_forum_ids[$forum_id]))
 								{
 									$sql = 'UPDATE ' . $forums_table . '
 										SET ' . $db->sql_build_array('UPDATE', ['image_id' => (int) $img_id]) . '
@@ -371,7 +386,7 @@ class main_module
 
 								$db->sql_query($sql);
 							}
-							else
+							else if (isset($existing_forum_ids[$forum_id]))
 							{
 								$sql = 'DELETE FROM ' . $forums_table . ' WHERE forum_id = ' . (int) $forum_id;
 								$db->sql_query($sql);
@@ -392,7 +407,7 @@ class main_module
 						'filename' => $row['image_filename'],
 						'title'    => $row['image_title'] ? $row['image_title'] . ' (' . $row['image_filename'] . ')' : $row['image_filename'],
 						'type'     => $row['image_type'],
-						'url'      => $phpbb_root_path . 'images/headermanager/' . $row['image_filename'],
+						'url'      => generate_board_url() . '/images/headermanager/' . $row['image_filename'],
 					];
 				}
 				$db->sql_freeresult($result);
