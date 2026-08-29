@@ -1,0 +1,37 @@
+/**
+* Header Manager - Centralized Elements Stylesheet
+*/
+
+.headerbar .inner {
+	display: flex !important;
+	flex-direction: column !important;
+	justify-content: center !important;
+	align-items: center !important;
+	text-align: center !important;
+	box-sizing: border-box !important;
+}
+
+.headerbar #site-description {
+	float: none !important;
+	text-align: center !important;
+	margin: 0 auto 10px !important;
+	width: 100% !important;
+	display: flex !important;
+	flex-direction: column !important;
+	align-items: center !important;
+	justify-content: center !important;
+}
+
+.headerbar #site-description a.logo {
+	float: none !important;
+	display: var(--hm-display-logo, inline-block) !important;
+	margin: 0 auto 10px !important;
+}
+
+.headerbar .search-header {
+	position: static !important;
+	float: none !important;
+	margin: 10px auto 0 !important;
+	text-align: center !important;
+	display: var(--hm-display-search, inline-block) !important;
+}

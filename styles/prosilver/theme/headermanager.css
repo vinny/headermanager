@@ -4,5 +4,60 @@
 
 .headerbar {
 	box-sizing: border-box;
+	background-image: var(--hm-bg-url, none) !important;
+	background-repeat: no-repeat !important;
+	background-position: center center !important;
+	background-size: cover !important;
+	min-height: var(--hm-height, auto) !important;
+	border-radius: var(--hm-border-radius, 0) !important;
 }
 
+.headerbar .inner {
+	min-height: var(--hm-height, auto) !important;
+}
+
+.headerbar #site-description a.logo,
+.headerbar #site-description #logo {
+	background-image: var(--hm-logo-url, none) !important;
+	background-repeat: no-repeat !important;
+	background-position: center center !important;
+	background-size: contain !important;
+	width: var(--hm-logo-width, auto) !important;
+	height: var(--hm-logo-height, auto) !important;
+	display: var(--hm-display-logo, inline-block) !important;
+}
+
+.headerbar #site-description a.logo .site_logo,
+.headerbar #site-description #logo .site_logo {
+	opacity: var(--hm-site-logo-opacity, 1) !important;
+	display: var(--hm-site-logo-display, var(--hm-display-logo, inline-block)) !important;
+}
+
+.headerbar #site-description h1 {
+	display: var(--hm-display-sitename, block) !important;
+}
+
+.headerbar #site-description p {
+	display: var(--hm-display-sitedesc, block) !important;
+}
+
+.headerbar .search-header {
+	display: var(--hm-display-search, block) !important;
+}
+
+@media (width <= 700px) {
+	.headerbar #site-description a.logo,
+	.headerbar #site-description #logo {
+		max-width: 85vw !important;
+		max-height: 55px !important;
+		width: var(--hm-mobile-logo-width, var(--hm-logo-width, 100%)) !important;
+		height: var(--hm-mobile-logo-height, var(--hm-logo-height, auto)) !important;
+		aspect-ratio: var(--hm-logo-ratio, auto) !important;
+		display: var(--hm-mobile-logo-display, var(--hm-display-logo, inline-block)) !important;
+	}
+
+	.headerbar #site-description a.logo .site_logo,
+	.headerbar #site-description #logo .site_logo {
+		display: var(--hm-mobile-logo-display, var(--hm-site-logo-display, var(--hm-display-logo, inline-block))) !important;
+	}
+}

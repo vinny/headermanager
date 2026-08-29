@@ -1,0 +1,27 @@
+/**
+* Header Manager - Clickable Headerbar Stylesheet
+*/
+
+.headerbar,
+.headerbar .inner {
+	position: relative !important;
+}
+
+.headerbar #site-description a.logo,
+.headerbar #site-description #logo {
+	display: inline-block !important;
+}
+
+.headerbar #site-description a.logo::after,
+.headerbar #site-description #logo::after {
+	content: "" !important;
+	position: absolute !important;
+	inset: 0 !important;
+	z-index: 1 !important;
+	cursor: pointer !important;
+}
+
+.headerbar .search-header {
+	position: relative !important;
+	z-index: 2 !important;
+}
