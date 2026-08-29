@@ -1,7 +1,7 @@
 <?php
 /**
 *
-* Header Manager extension for the phpBB Forum Software package.
+* Header & Logo Manager extension for the phpBB Forum Software package.
 *
 * @copyright (c) 2026 Vinny <https://github.com/vinny>
 * @license GNU General Public License, version 2 (GPL-2.0)
@@ -93,8 +93,6 @@ $lang = array_merge($lang, [
 	'HM_IMAGE_DELETED_SUCCESS'			=> 'The header image has been deleted.',
 	'HM_IMAGE_DELETE_CONFIRM'			=> 'Are you sure you want to delete this header image?',
 	'HM_ERROR_NO_FILE'					=> 'Please select a valid image file to upload.',
-	'HM_ERROR_UPLOAD'					=> 'An error occurred while uploading the file. Check file permissions on images/headermanager/.',
-	'HM_ERROR_INVALID_TYPE'				=> 'The uploaded file is not a valid image format. Allowed formats: PNG, JPG, JPEG, GIF, WEBP.',
 
 	// Forum images
 	'HEADERMANAGER_FORUMS'				=> 'Forum specific header images',

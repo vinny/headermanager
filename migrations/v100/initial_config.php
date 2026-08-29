@@ -1,7 +1,7 @@
 <?php
 /**
 *
-* Header Manager extension for the phpBB Forum Software package.
+* Header & Logo Manager extension for the phpBB Forum Software package.
 *
 * @copyright (c) 2026 Vinny <https://github.com/vinny>
 * @license GNU General Public License, version 2 (GPL-2.0)

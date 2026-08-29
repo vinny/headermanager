@@ -1,7 +1,7 @@
 <?php
 /**
 *
-* Header Manager extension for the phpBB Forum Software package.
+* Header & Logo Manager extension for the phpBB Forum Software package.
 *
 * @copyright (c) 2026 Vinny <https://github.com/vinny>
 * @license GNU General Public License, version 2 (GPL-2.0)
@@ -19,7 +19,7 @@ if (empty($lang) || !is_array($lang))
 }
 
 $lang = array_merge($lang, [
-	'ACP_HEADERMANAGER_TITLE'	=> 'Header Manager',
+	'ACP_HEADERMANAGER_TITLE'	=> 'Header & Logo Manager',
 	'HEADERMANAGER_SETTINGS'	=> 'General settings',
 	'HEADERMANAGER_LOGO'		=> 'Custom logo settings',
 	'HEADERMANAGER_IMAGES'		=> 'Header background banners',

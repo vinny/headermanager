@@ -1,6 +1,6 @@
-# Header Manager [![Build Status](https://github.com/vinny/headermanager/actions/workflows/tests.yml/badge.svg)](https://github.com/vinny/headermanager/actions/workflows/tests.yml)
+# Header & Logo Manager [![Build Status](https://github.com/vinny/headermanager/actions/workflows/tests.yml/badge.svg)](https://github.com/vinny/headermanager/actions/workflows/tests.yml)
 
-Header Manager is a phpBB 3.3 extension that customises the board headerbar with random background banners, forum-specific header backgrounds, custom logo upload, custom sizing, element visibility controls, and clickable header behavior.
+Header & Logo Manager is a phpBB 3.3 extension that customises the board headerbar with random background banners, forum-specific header backgrounds, custom logo upload, custom sizing, element visibility controls, and clickable header behavior.
 
 ## Features
 
@@ -20,12 +20,12 @@ Header Manager is a phpBB 3.3 extension that customises the board headerbar with
 1. Download the latest release.
 2. Copy the contents to `ext/vinny/headermanager`.
 3. Navigate to **ACP > Customise > Manage extensions**.
-4. Look for **Header Manager** under Disabled Extensions and click **Enable**.
+4. Look for **Header & Logo Manager** under Disabled Extensions and click **Enable**.
 
 ## Uninstallation
 
 1. Navigate to **ACP > Customise > Manage extensions**.
-2. Look for **Header Manager** under Enabled Extensions and click **Disable**.
+2. Look for **Header & Logo Manager** under Enabled Extensions and click **Disable**.
 3. To permanently remove stored images and database tables, click **Delete data**.
 
 ## License

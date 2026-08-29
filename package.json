@@ -1,7 +1,7 @@
 {
   "name": "vinny-headermanager",
   "version": "1.0.0",
-  "description": "Header Manager extension for phpBB - CSS Linting",
+  "description": "Header & Logo Manager extension for phpBB - CSS Linting",
   "scripts": {
     "test": "npm run lint:css",
     "lint:css": "npx stylelint \"styles/**/*.css\""
